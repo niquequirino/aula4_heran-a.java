@@ -13,68 +13,46 @@ public class Principal {
 
 	public static void main(String[] args) {
 
-		Scanner src = new Scanner(System.in);
+		System.out.println("Bem-Vindo ao Banco do Santander ");
 		
-		System.out.println("Digite o nome da conta");
-		String nome = src.next();
-		
-		System.out.println("Digite o saldo da conta: ");
-		double saldo = src.nextDouble();
-		
-		System.out.println("Digite o numero da conta: ");
-		int numero = src.nextInt();
-		
-		System.out.println("Cor: ");
-		int cor = src.nextInt();
-		
-		System.out.println("Limite da conta: ");
-		double limite = src.nextDouble();
-		
-		System.out.println("Digite [1] cor black, [2] cor pink, [3] cor red ");
-	
-		int numCores = src.nextInt();
-		
+		Scanner sc = new Scanner(System.in);
 		List<Conta> lista = new ArrayList<>();
 		
+		System.out.print("Quantas contas você deseja cadastrar? ");
+		int n = sc.nextInt();
 		
-		if( numCores == 1) {
-			ContaComercial cc = new ContaComercial(nome, numero, limite, Cores.BLACK, 0);
-			lista.add(cc);
+		for(int i= 1; i <= n ; i++) {
+			System.out.print("Selecione C para Conta Corrente ou P para Poupança");
+			String x = sc.next();
+			if(x.equals("C")) {
+				
+			System.out.println("Digite o nome do dono da conta: ");
+			String nome = sc.next();
+			System.out.println("Digite o numero da conta: ");
+			int numero = sc.nextInt();
+			System.out.println("Digite o saldo: ");
+			double saldo = sc.nextDouble();
+			System.out.print("Digite o limite: ");
+			double limite = sc.nextDouble();
 			
-		}else if(numCores == 2) {
-			ContaComercial cc = new ContaComercial(nome, numero, limite, Cores.PINK, 0);
-			lista.add(cc);
+			Conta conta = new Corrente(nome, numero, saldo, limite);
 			
-		}else if(numCores == 3) {
-			ContaComercial cc = new ContaComercial(nome, numero, limite, Cores.RED, 0);
-			lista.add(cc);
+			lista.add(conta);
 		}
-		
-		if (numCores == 1) {
-			ContaPoupanca cp = new ContaPoupanca(nome, numero, limite, Cores.BLACK);
-			lista.add(cp);
+		else {
+			System.out.println("Digite o nome do dono da conta: ");
+			String nome = sc.next();
+			System.out.println("Digite o numero da conta: ");
+			int numero = sc.nextInt();
+			System.out.println("Digite o saldo: ");
+			double saldo = sc.nextDouble();
 			
+			lista.add(new Poupanca(nome, numero, saldo));
 		}
-		else if(numCores == 2) {
-			ContaPoupanca cp = new ContaPoupanca(nome, numero, limite, Cores.PINK);
-			lista.add(cp);
-		}
-		else if(numCores == 3) {
-			ContaPoupanca cp = new ContaPoupanca(nome, numero, limite, Cores.RED);
-			lista.add(cp);
-		}
-		
-		System.out.println("Digite a conta que você quer: ");
-		for(Conta  e: lista) {
-			if(("Comercial").toLowerCase() != null) {
-				System.out.println(lista.get(1));
-				break;
+			
+			for(Conta r : lista) {
+				System.out.println(r);
 			}
-			else if(("Poupança").toLowerCase() != null);
-			System.out.println(lista.get(2));
-			break;
-		}
+	  }
 	}
-
 }
-		
